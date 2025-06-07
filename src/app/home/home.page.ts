@@ -1,4 +1,5 @@
 import { Component } from '@angular/core';
+import { Router } from '@angular/router';
 
 @Component({
   selector: 'app-home',
@@ -38,6 +39,11 @@ export class HomePage {
       comuna: 'La Florida',
       imagen: 'assets/img/lampara.jpg'
     }
-
   ];
+
+  constructor(private router: Router) {}
+
+  irACrearPublicacion() {
+    this.router.navigate(['/tabs/publicaciones']);
+  }
 }

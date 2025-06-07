@@ -1,0 +1,27 @@
+ion-content {
+  --background: #ffffff !important;
+}
+ion-card {
+  background-color: var(--ion-color-warning);
+  color: #333;
+  border-radius: 12px;
+  box-shadow: 0 2px 8px rgba(0, 0, 0, 0.1);
+  margin-bottom: 16px;
+}
+
+ion-card-title,
+ion-card-subtitle,
+ion-card-content p {
+  color: #333 !important;
+}
+
+ion-card img {
+  border-top-left-radius: 12px;
+  border-top-right-radius: 12px;
+  object-fit: cover;
+  max-height: 180px;
+}
+
+.boton-menu-blanco::part(icon) {
+  color: white !important;
+}
