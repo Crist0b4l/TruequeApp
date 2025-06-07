@@ -1,0 +1,37 @@
+ion-menu {
+  --background: #ffffff;
+}
+
+ion-header {
+  --background: var(--ion-color-primary);
+  color: white;
+}
+
+ion-toolbar ion-title {
+  color: white;
+  font-weight: bold;
+}
+
+ion-content {
+  --background: #ffffff !important;
+}
+
+ion-list {
+  background: #ffffff !important;
+  --background: #ffffff !important;
+}
+
+
+ion-item[color="warning"] {
+  --ion-item-background: var(--ion-color-warning);
+  border-radius: 10px;
+  margin: 12px;
+  box-shadow: 0 2px 6px rgba(0, 0, 0, 0.1);
+}
+
+.menu-label {
+  color: white;
+  font-weight: bold;
+  padding-left: 8px;
+}
+
