@@ -1,0 +1,75 @@
+<ion-header>
+  <ion-toolbar color="primary">
+    <ion-title style="color: white">Nueva Publicación</ion-title>
+    <ion-buttons slot="end">
+      <ion-button color="light" (click)="cerrar()">Cerrar</ion-button>
+    </ion-buttons>
+  </ion-toolbar>
+</ion-header>
+
+<ion-content class="ion-padding">
+  <ion-card>
+    <ion-card-content>
+      <ion-item>
+        <ion-label position="floating">Título</ion-label>
+        <ion-input [(ngModel)]="titulo"></ion-input>
+      </ion-item>
+
+      <ion-item>
+        <ion-label position="floating">Descripción</ion-label>
+        <ion-textarea [(ngModel)]="descripcion"></ion-textarea>
+      </ion-item>
+
+      <ion-item>
+        <ion-label position="floating">Intercambio</ion-label>
+        <ion-input [(ngModel)]="intercambio"></ion-input>
+      </ion-item>
+
+      <ion-item>
+        <ion-label>Tipo</ion-label>
+        <ion-select [(ngModel)]="tipo">
+          <ion-select-option value="Ofrece">Ofrece</ion-select-option>
+          <ion-select-option value="Busca">Busca</ion-select-option>
+        </ion-select>
+      </ion-item>
+      <ion-item>
+        <ion-label>Categoría</ion-label>
+        <ion-select
+          [(ngModel)]="categoria"
+          interface="popover"
+          placeholder="Selecciona una categoría"
+        >
+          <ion-select-option value="Juguetes">Juguetes</ion-select-option>
+          <ion-select-option value="Electrónica">Electrónica</ion-select-option>
+          <ion-select-option value="Jardín">Jardín</ion-select-option>
+          <ion-select-option value="Libros">Libros</ion-select-option>
+          <ion-select-option value="Servicios">Servicios</ion-select-option>
+          <ion-select-option value="Herramientas"
+            >Herramientas</ion-select-option
+          >
+        </ion-select>
+      </ion-item>
+
+      <ion-item>
+        <ion-label position="floating">Comuna</ion-label>
+        <ion-input [(ngModel)]="comuna" placeholder="Ej: Maipú"></ion-input>
+      </ion-item>
+
+      <ion-item lines="none">
+        <ion-label>Imagen</ion-label>
+        <input type="file" accept="image/*" (change)="onFileSelected($event)" />
+      </ion-item>
+
+      <ion-item *ngIf="previewUrl">
+        <ion-thumbnail slot="start">
+          <img [src]="previewUrl" alt="Vista previa" />
+        </ion-thumbnail>
+        <ion-label>Vista previa</ion-label>
+      </ion-item>
+
+      <ion-button expand="block" color="warning" (click)="publicar()"
+        >Publicar</ion-button
+      >
+    </ion-card-content>
+  </ion-card>
+</ion-content>

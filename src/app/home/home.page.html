@@ -7,12 +7,12 @@
   </ion-toolbar>
 </ion-header>
 
-<ion-content class="ion-padding">
+<ion-content [fullscreen]="true" class="ion-padding">
   <ion-card *ngFor="let pub of publicaciones" class="publicacion-card">
     <img [src]="pub.imagen" alt="Imagen del producto" />
 
     <ion-card-header>
-      <ion-chip [color]="pub.tipo === 'Ofrece' ? 'warning' : 'medium'">
+      <ion-chip color="light" style="color: #000; font-weight: bold">
         {{ pub.tipo }} | {{ pub.categoria }}
       </ion-chip>
       <ion-card-title>{{ pub.titulo }}</ion-card-title>
@@ -21,23 +21,24 @@
     <ion-card-content>
       <p><strong>Descripción:</strong> {{ pub.descripcion }}</p>
       <p>
-        <strong>{{ pub.tipo === 'Ofrece' ? 'Busca' : 'Ofrece' }}:</strong> {{
-        pub.intercambio }}
+        <strong>{{ pub.tipo === 'Ofrece' ? 'Busca' : 'Ofrece' }}:</strong>
+        {{ pub.intercambio }}
       </p>
       <p>{{ pub.usuario }} | {{ pub.comuna }}</p>
     </ion-card-content>
   </ion-card>
 
-  <!-- Botones flotantes -->
+  <!-- Botón lupa -->
   <ion-fab vertical="bottom" horizontal="start" slot="fixed">
     <ion-fab-button color="light">
       <ion-icon name="search-outline"></ion-icon>
     </ion-fab-button>
   </ion-fab>
 
+  <!-- Botón más -->
   <ion-fab vertical="bottom" horizontal="end" slot="fixed">
-    <ion-fab-button color="warning">
-      <ion-icon name="add-outline"></ion-icon>
+    <ion-fab-button (click)="irACrearPublicacion()" color="primary">
+      <ion-icon name="add"></ion-icon>
     </ion-fab-button>
   </ion-fab>
 </ion-content>

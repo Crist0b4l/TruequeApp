@@ -27,7 +27,7 @@ export class LoginPage {
       return this.presentAlert('Contraseña inválida', 'Debe contener exactamente 4 dígitos numéricos.');
     }
     //navegar a la página de inicio
-    this.router.navigateByUrl('/home');
+    this.router.navigateByUrl('/tabs/home');
   }
 
   async presentAlert(titulo: string, mensaje: string) {

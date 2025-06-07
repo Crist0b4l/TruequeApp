@@ -31,6 +31,10 @@ const routes: Routes = [
     path: 'mensajes',
     loadChildren: () => import('./pages/mensajes/mensajes.module').then( m => m.MensajesPageModule)
   },
+  {
+    path: 'form-publicacion',
+    loadChildren: () => import('./pages/form-publicacion/form-publicacion.module').then( m => m.FormPublicacionPageModule)
+  },
   
 ];
 
