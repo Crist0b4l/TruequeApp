@@ -1,0 +1,7 @@
+{
+  "name": "TruequeApp",
+  "integrations": {
+    "capacitor": {}
+  },
+  "type": "angular"
+}
