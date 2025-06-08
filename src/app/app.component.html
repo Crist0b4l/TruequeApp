@@ -8,18 +8,26 @@
   >
     <ion-header>
       <ion-toolbar color="primary">
-        <ion-title>Menú</ion-title>
+        <ion-title style="color: white">Menú</ion-title>
       </ion-toolbar>
     </ion-header>
     <ion-content>
       <ion-list>
-        <ion-item color="warning" routerLink="/perfil">
-          <ion-label class="menu-label">👤 Perfil</ion-label>
-        </ion-item>
+        <ng-container *ngIf="esPerfil; else menuCompleto">
+          <ion-item color="warning" routerLink="/tabs/home">
+            <ion-label class="menu-label">🏠 Inicio</ion-label>
+          </ion-item>
+        </ng-container>
 
-        <ion-item color="warning" (click)="cerrarSesion()">
-          <ion-label class="menu-label">🚪 Cerrar sesión</ion-label>
-        </ion-item>
+        <ng-template #menuCompleto>
+          <ion-item color="warning" routerLink="/perfil">
+            <ion-label class="menu-label">👤 Perfil</ion-label>
+          </ion-item>
+
+          <ion-item color="warning" (click)="cerrarSesion()">
+            <ion-label class="menu-label">🚪 Cerrar sesión</ion-label>
+          </ion-item>
+        </ng-template>
       </ion-list>
     </ion-content>
   </ion-menu>

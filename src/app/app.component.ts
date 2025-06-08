@@ -14,6 +14,10 @@ export class AppComponent {
     return !this.router.url.includes('/login');
   }
 
+  get esPerfil(): boolean {
+    return this.router.url === '/perfil';
+  }
+
   cerrarSesion() {
     this.router.navigateByUrl('/login');
   }

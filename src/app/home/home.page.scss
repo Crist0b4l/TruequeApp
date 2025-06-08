@@ -40,3 +40,9 @@ ion-content {
 .boton-menu-blanco::part(icon) {
   color: white !important;
 }
+
+
+::ng-deep .alert-wrapper {
+  border-radius: 12px;
+  background-color: #ffffff;
+}

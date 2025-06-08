@@ -1,5 +1,6 @@
 import { Component } from '@angular/core';
 import { Router } from '@angular/router';
+import { AlertController } from '@ionic/angular';
 
 @Component({
   selector: 'app-home',
@@ -41,9 +42,37 @@ export class HomePage {
     }
   ];
 
-  constructor(private router: Router) {}
+  constructor(private router: Router, private alertCtrl: AlertController) {}
 
   irACrearPublicacion() {
     this.router.navigate(['/tabs/publicaciones']);
+  }
+
+  async abrirBusqueda() {
+    const alert = await this.alertCtrl.create({
+      header: 'Buscar publicación',
+      inputs: [
+        {
+          name: 'termino',
+          type: 'text',
+          placeholder: 'Ej: bicicleta, libros, tecnología...'
+        }
+      ],
+      buttons: [
+        {
+          text: 'Cancelar',
+          role: 'cancel'
+        },
+        {
+          text: 'Buscar',
+          handler: (data) => {
+            console.log('Término buscado:', data.termino);
+            // En el futuro aquí se podrá aplicar la lógica para filtrar
+          }
+        }
+      ]
+    });
+
+    await alert.present();
   }
 }
