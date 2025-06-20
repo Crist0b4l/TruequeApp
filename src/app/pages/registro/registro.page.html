@@ -1,0 +1,136 @@
+<ion-header>
+  <ion-toolbar color="primary">
+    <ion-title style="color: white">Registro</ion-title>
+  </ion-toolbar>
+</ion-header>
+
+<ion-content class="ion-padding">
+  <form (ngSubmit)="registrarUsuario()">
+    <ion-item>
+      <ion-label position="floating">Usuario</ion-label>
+      <ion-input
+        [(ngModel)]="usuario.usuario"
+        name="usuario"
+        required
+        (ionBlur)="verificarUsuarioEmail()"
+      ></ion-input>
+    </ion-item>
+    <ion-note color="danger" *ngIf="intentoEnvio && !usuario.usuario">
+      Este campo es obligatorio
+    </ion-note>
+    <ion-note color="danger" *ngIf="usuarioExistente">
+      Este nombre de usuario ya está en uso
+    </ion-note>
+
+    <ion-item>
+      <ion-label position="floating">Contraseña</ion-label>
+      <ion-input
+        type="password"
+        [(ngModel)]="usuario.password"
+        name="password"
+        required
+      ></ion-input>
+    </ion-item>
+    <ion-note color="danger" *ngIf="intentoEnvio && !usuario.password">
+      Este campo es obligatorio
+    </ion-note>
+
+    <ion-item>
+      <ion-label position="floating">Nombre</ion-label>
+      <ion-input
+        [(ngModel)]="usuario.nombre"
+        name="nombre"
+        required
+      ></ion-input>
+    </ion-item>
+    <ion-note color="danger" *ngIf="intentoEnvio && !usuario.nombre">
+      Este campo es obligatorio
+    </ion-note>
+
+    <ion-item>
+      <ion-label position="floating">Apellido</ion-label>
+      <ion-input
+        [(ngModel)]="usuario.apellido"
+        name="apellido"
+        required
+      ></ion-input>
+    </ion-item>
+    <ion-note color="danger" *ngIf="intentoEnvio && !usuario.apellido">
+      Este campo es obligatorio
+    </ion-note>
+
+    <ion-item>
+      <ion-label position="floating">Fecha de Nacimiento</ion-label>
+      <ion-datetime
+        presentation="date"
+        [(ngModel)]="usuario.fecha_nacimiento"
+        name="fecha_nacimiento"
+        required
+      ></ion-datetime>
+    </ion-item>
+    <ion-note color="danger" *ngIf="intentoEnvio && !usuario.fecha_nacimiento">
+      Este campo es obligatorio
+    </ion-note>
+
+    <ion-item>
+      <ion-label position="floating">Teléfono</ion-label>
+      <ion-input
+        type="tel"
+        [(ngModel)]="usuario.telefono"
+        name="telefono"
+        required
+      ></ion-input>
+    </ion-item>
+    <ion-note color="danger" *ngIf="intentoEnvio && !usuario.telefono">
+      Este campo es obligatorio
+    </ion-note>
+
+    <ion-item>
+      <ion-label position="floating">Comuna</ion-label>
+      <ion-input
+        [(ngModel)]="usuario.comuna"
+        name="comuna"
+        required
+      ></ion-input>
+    </ion-item>
+    <ion-note color="danger" *ngIf="intentoEnvio && !usuario.comuna">
+      Este campo es obligatorio
+    </ion-note>
+
+    <ion-item>
+      <ion-label position="floating">Email</ion-label>
+      <ion-input
+        type="email"
+        [(ngModel)]="usuario.email"
+        name="email"
+        required
+        (ionBlur)="verificarUsuarioEmail()"
+      ></ion-input>
+    </ion-item>
+    <ion-note color="danger" *ngIf="intentoEnvio && !usuario.email">
+      Este campo es obligatorio
+    </ion-note>
+    <ion-note color="danger" *ngIf="emailExistente">
+      Este correo ya está registrado
+    </ion-note>
+
+    <ion-button
+      expand="block"
+      type="submit"
+      color="warning"
+      class="ion-margin-top"
+      [disabled]="usuarioExistente || emailExistente"
+    >
+      Registrarse
+    </ion-button>
+    <!-- boton para ver usuarios registrados -->
+    <ion-button
+      expand="block"
+      color="secondary"
+      (click)="verUsuarios()"
+      class="ion-margin-top"
+    >
+      Ver Usuarios Registrados
+    </ion-button>
+  </form>
+</ion-content>

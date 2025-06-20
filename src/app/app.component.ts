@@ -19,6 +19,7 @@ export class AppComponent {
   }
 
   cerrarSesion() {
-    this.router.navigateByUrl('/login');
+    localStorage.removeItem('usuarioActivo'); // Eliminar la sesión activa
+    this.router.navigateByUrl('/login'); // Redirigir al login
   }
 }

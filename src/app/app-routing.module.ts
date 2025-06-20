@@ -1,5 +1,6 @@
 import { NgModule } from '@angular/core';
 import { PreloadAllModules, RouterModule, Routes } from '@angular/router';
+import { AuthGuard } from './guards/auth.guard';
 
 const routes: Routes = [
   {
@@ -13,28 +14,44 @@ const routes: Routes = [
   },
   {
     path: 'home',
-    loadChildren: () => import('./home/home.module').then( m => m.HomePageModule)
+    canActivate: [AuthGuard], // Asegurarse de que el usuario esté autenticado
+    loadChildren: () => import('./home/home.module').then( m => m.HomePageModule),
   },
   {
     path: 'perfil',
-    loadChildren: () => import('./pages/perfil/perfil.module').then( m => m.PerfilPageModule)
+    canActivate: [AuthGuard], // Asegurarse de que el usuario esté autenticado
+    loadChildren: () => import('./pages/perfil/perfil.module').then( m => m.PerfilPageModule),
   },
   {
     path: 'tabs',
-    loadChildren: () => import('./tabs/tabs.module').then( m => m.TabsPageModule)
+    canActivate: [AuthGuard],// Asegurarse de que el usuario esté autenticado
+    loadChildren: () => import('./tabs/tabs.module').then( m => m.TabsPageModule),
   },
   {
     path: 'publicaciones',
-    loadChildren: () => import('./pages/publicaciones/publicaciones.module').then( m => m.PublicacionesPageModule)
+    canActivate: [AuthGuard], // Asegurarse de que el usuario esté autenticado
+    loadChildren: () => import('./pages/publicaciones/publicaciones.module').then( m => m.PublicacionesPageModule),
   },
   {
     path: 'mensajes',
-    loadChildren: () => import('./pages/mensajes/mensajes.module').then( m => m.MensajesPageModule)
+    canActivate: [AuthGuard], // Asegurarse de que el usuario esté autenticado
+    loadChildren: () => import('./pages/mensajes/mensajes.module').then( m => m.MensajesPageModule),
   },
   {
     path: 'form-publicacion',
-    loadChildren: () => import('./pages/form-publicacion/form-publicacion.module').then( m => m.FormPublicacionPageModule)
+    canActivate: [AuthGuard], // Asegurarse de que el usuario esté autenticado
+    loadChildren: () => import('./pages/form-publicacion/form-publicacion.module').then( m => m.FormPublicacionPageModule),
   },
+  {
+    path: 'registro',
+    loadChildren: () => import('./pages/registro/registro.module').then( m => m.RegistroPageModule)
+  },
+  {
+    path: '**',
+    loadChildren: () => import('./pages/not-found/not-found.module').then( m => m.NotFoundPageModule)
+  },
+
+
   
 ];
 
