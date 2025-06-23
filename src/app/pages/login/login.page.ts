@@ -52,4 +52,8 @@ export class LoginPage {
 
     await alert.present();
   }
+  //Probar pagina inexistente
+  irARutaInexistente() {
+    this.router.navigate(['/ruta-que-no-existe']);
+  }
 }

@@ -32,6 +32,19 @@ export class RegistroPage implements OnInit {
     private router: Router
   ) {}
 
+  get usuarioInvalido(): boolean {
+    return this.usuario.usuario !== '' && (this.usuario.usuario.length < 4 || this.usuario.usuario.length > 10);
+  }
+
+  get passwordInvalida(): boolean {
+    return this.usuario.password !== '' && !/^\d{4}$/.test(this.usuario.password);
+  }
+
+  get emailInvalido(): boolean {
+    return this.usuario.email !== '' && !/^[^\s@]+@[^\s@]+\.[^\s@]+$/.test(this.usuario.email);
+  }
+
+
   ngOnInit() {}
 
   async verificarUsuarioEmail() {
@@ -83,8 +96,32 @@ export class RegistroPage implements OnInit {
 
 
   camposCompletos(): boolean {
-    return Object.values(this.usuario).every(value => (value || '').toString().trim() !== '');
+    const camposLlenos = Object.values(this.usuario).every(value => (value || '').toString().trim() !== '');
+    return camposLlenos && this.validacionesExtra();
   }
+  
+  validacionesExtra(): boolean {
+  if (this.usuarioInvalido) {
+    this.presentToast('El nombre de usuario debe tener entre 4 y 10 caracteres');
+    return false;
+  }
+
+  if (this.passwordInvalida) {
+    this.presentToast('La contraseña debe tener exactamente 4 números');
+    return false;
+  }
+
+  if (this.emailInvalido) {
+    this.presentToast('El correo debe tener el formato correcto (ej: nombre@dominio.com)');
+    return false;
+  }
+
+  return true;
+}
+
+
+
+
 
   limpiarCampos() {
     this.usuario = {

@@ -1,7 +1,13 @@
 <ion-header [translucent]="true">
-  <ion-toolbar>
-    <ion-title>not-found</ion-title>
+  <ion-toolbar color="danger">
+    <ion-title>Página no encontrada</ion-title>
   </ion-toolbar>
 </ion-header>
 
-<ion-content [fullscreen]="true"> ERROR: PAGINA NO ENCONTRADA </ion-content>
+<ion-content [fullscreen]="true" class="ion-padding background-style">
+  <h2>404</h2>
+  <p>Oops... la página que buscas no existe.</p>
+  <ion-button (click)="goHome()" expand="full" color="warning">
+    Volver al inicio
+  </ion-button>
+</ion-content>

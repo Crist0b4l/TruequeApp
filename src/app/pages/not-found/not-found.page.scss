@@ -1,0 +1,55 @@
+.background-style {
+  --background: linear-gradient(to bottom, #5c9ded, #a8caff);
+}
+
+ion-content {
+  display: flex;
+  flex-direction: column;
+  justify-content: center;
+  align-items: center;
+  text-align: center;
+  animation: fadeIn 1s ease-in-out;
+  background: linear-gradient(to top, #f9f9f9, #e0e0e0);
+}
+
+h2 {
+  font-size: 4rem;
+  color: #ff3b30;
+  margin-bottom: 0.5rem;
+  animation: bounce 1s ease-in-out;
+}
+
+p {
+  font-size: 1.2rem;
+  color: #333;
+  margin-bottom: 2rem;
+}
+
+ion-button {
+  font-weight: bold;
+  border-radius: 12px;
+}
+
+/* Animaciones */
+@keyframes fadeIn {
+  from {
+    opacity: 0;
+    transform: translateY(20px);
+  }
+  to {
+    opacity: 1;
+    transform: translateY(0);
+  }
+}
+
+@keyframes bounce {
+  0% {
+    transform: scale(0.9);
+  }
+  50% {
+    transform: scale(1.1);
+  }
+  100% {
+    transform: scale(1);
+  }
+}
