@@ -112,9 +112,14 @@
         required
       ></ion-input>
     </ion-item>
+
     <ion-note color="danger" *ngIf="intentoEnvio && !usuario.comuna">
       Este campo es obligatorio
     </ion-note>
+
+    <ion-button fill="outline" size="small" (click)="obtenerUbicacion()">
+      Usar mi ubicación
+    </ion-button>
 
     <!-- Email -->
     <ion-item>

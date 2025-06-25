@@ -2,6 +2,7 @@ import { Component, OnInit } from '@angular/core';
 import { DbserviceService } from 'src/app/services/dbservice.service';
 import { ToastController } from '@ionic/angular';
 import { Router } from '@angular/router';
+import { Geolocation } from '@capacitor/geolocation';
 
 @Component({
   selector: 'app-registro',
@@ -147,4 +148,46 @@ export class RegistroPage implements OnInit {
     });
     toast.present();
   }
+
+  async obtenerUbicacion() {
+  try {
+    const position = await Geolocation.getCurrentPosition();
+    const lat = position.coords.latitude;
+    const lon = position.coords.longitude;
+
+    console.log('Latitud:', lat, 'Longitud:', lon);
+
+    // Llama a API externa para obtener comuna
+    await this.obtenerComunaDesdeCoords(lat, lon);
+
+  } catch (error) {
+    console.error('Error obteniendo ubicación', error);
+    this.presentToast('No se pudo obtener tu ubicación');
+  }
+}
+
+async obtenerComunaDesdeCoords(lat: number, lon: number) {
+  const url = `https://nominatim.openstreetmap.org/reverse?lat=${lat}&lon=${lon}&format=json`;
+
+  try {
+    const response = await fetch(url);
+    const data = await response.json();
+    const comuna = data.address?.city || data.address?.town || data.address?.village;
+
+    if (comuna) {
+      this.usuario.comuna = comuna;
+      this.presentToast(`Comuna detectada: ${comuna}`);
+    } else {
+      this.presentToast('No se pudo detectar la comuna');
+    }
+
+    console.log('Respuesta API:', data);
+
+  } catch (error) {
+    console.error('Error en reverse geocoding:', error);
+    this.presentToast('Error al obtener comuna desde coordenadas');
+  }
+}
+
+
 }

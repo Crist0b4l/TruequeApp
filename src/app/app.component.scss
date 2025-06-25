@@ -1,9 +1,5 @@
-ion-menu {
-  --background: #ffffff;
-}
-
 ion-header {
-  --background: var(--ion-color-primary);
+  --background: var(--ion-color-primary);  
   color: white;
 }
 
@@ -13,14 +9,13 @@ ion-toolbar ion-title {
 }
 
 ion-content {
-  --background: #ffffff !important;
+  --background: transparent;
 }
 
 ion-list {
-  background: #ffffff !important;
-  --background: #ffffff !important;
+  background: transparent;
+  --background: transparent;
 }
-
 
 ion-item[color="warning"] {
   --ion-item-background: var(--ion-color-warning);
@@ -34,4 +29,3 @@ ion-item[color="warning"] {
   font-weight: bold;
   padding-left: 8px;
 }
-

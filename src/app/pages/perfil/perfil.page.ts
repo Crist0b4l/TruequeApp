@@ -10,6 +10,9 @@ import { ToastController } from '@ionic/angular';
   standalone: false,
 })
 export class PerfilPage implements OnInit {
+  modoEdicion: boolean = false;
+
+
   usuarioDB: any = null;
 
   nuevoUsuario: string = '';
@@ -20,6 +23,32 @@ export class PerfilPage implements OnInit {
     private dbService: DbserviceService,
     private toastController: ToastController
   ) {}
+
+  get usuarioInvalido(): boolean {
+  return (
+    this.nuevoUsuario !== '' &&
+    (this.nuevoUsuario.length < 4 || this.nuevoUsuario.length > 10)
+  );
+}
+
+get passwordInvalida(): boolean {
+  return this.nuevaPassword !== '' && !/^\d{4}$/.test(this.nuevaPassword);
+}
+
+validacionesPerfil(): boolean {
+  if (this.usuarioInvalido) {
+    this.presentToast('El nombre de usuario debe tener entre 4 y 10 caracteres');
+    return false;
+  }
+
+  if (this.passwordInvalida) {
+    this.presentToast('La contraseña debe tener exactamente 4 números');
+    return false;
+  }
+
+  return true;
+}
+
 
   async ngOnInit() {
     const usuarioActivo = localStorage.getItem('usuarioActivo');
@@ -36,6 +65,8 @@ export class PerfilPage implements OnInit {
   }
 
   async actualizarPerfil() {
+    if (!this.validacionesPerfil()) return;
+
     try {
       await this.dbService.actualizarUsuario(
         this.usuarioDB.usuario,
@@ -43,11 +74,14 @@ export class PerfilPage implements OnInit {
         this.nuevaPassword
       );
       localStorage.setItem('usuarioActivo', this.nuevoUsuario);
+      this.usuarioDB.usuario = this.nuevoUsuario;
       this.presentToast('Datos actualizados correctamente');
+      this.modoEdicion = false;  // Vuelve a modo vista
     } catch (error: any) {
       this.presentToast('Error al actualizar: ' + error.message);
     }
   }
+
 
   async presentToast(message: string) {
     const toast = await this.toastController.create({
@@ -57,4 +91,11 @@ export class PerfilPage implements OnInit {
     });
     await toast.present();
   }
+
+  cancelarEdicion() {
+    this.modoEdicion = false;
+    this.nuevoUsuario = this.usuarioDB.usuario;
+    this.nuevaPassword = this.usuarioDB.password;
+  }
+
 }
