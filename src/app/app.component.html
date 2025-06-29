@@ -14,13 +14,13 @@
     <ion-content>
       <ion-list>
         <ng-container *ngIf="esPerfil; else menuCompleto">
-          <ion-item color="warning" routerLink="/tabs/home">
+          <ion-item color="warning" (click)="irAPagina('/tabs/home')">
             <ion-label class="menu-label">🏠 Inicio</ion-label>
           </ion-item>
         </ng-container>
 
         <ng-template #menuCompleto>
-          <ion-item color="warning" routerLink="/perfil">
+          <ion-item color="warning" (click)="irAPagina('/perfil')">
             <ion-label class="menu-label">👤 Perfil</ion-label>
           </ion-item>
 

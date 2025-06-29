@@ -32,6 +32,7 @@
           <ion-select-option value="Busca">Busca</ion-select-option>
         </ion-select>
       </ion-item>
+
       <ion-item>
         <ion-label>Categoría</ion-label>
         <ion-select
@@ -54,22 +55,40 @@
         <ion-label position="floating">Comuna</ion-label>
         <ion-input [(ngModel)]="comuna" placeholder="Ej: Maipú"></ion-input>
       </ion-item>
+      <ion-item line="none">
+        <ion-button
+          expand="block"
+          color="primary"
+          fill="outline"
+          (click)="obtenerUbicacion()"
+        >
+          <ion-icon slot="start" name="navigate-outline"></ion-icon>
+          Usar mi ubicación
+        </ion-button>
+      </ion-item>
 
       <ion-item lines="none">
-        <ion-label>Imagen</ion-label>
-        <input type="file" accept="image/*" (change)="onFileSelected($event)" />
+        <ion-button
+          expand="block"
+          color="primary"
+          (click)="seleccionarImagen()"
+        >
+          <ion-icon name="camera-outline" slot="start"></ion-icon>
+          Agregar Foto
+        </ion-button>
       </ion-item>
 
-      <ion-item *ngIf="previewUrl">
-        <ion-thumbnail slot="start">
-          <img [src]="previewUrl" alt="Vista previa" />
-        </ion-thumbnail>
-        <ion-label>Vista previa</ion-label>
+      <ion-item lines="none" *ngIf="previewUrl">
+        <img
+          [src]="previewUrl"
+          style="width: 100%; max-height: 200px; object-fit: contain"
+          alt="Vista previa"
+        />
       </ion-item>
 
-      <ion-button expand="block" color="warning" (click)="publicar()"
-        >Publicar</ion-button
-      >
+      <ion-button expand="block" color="warning" (click)="publicar()">
+        Publicar
+      </ion-button>
     </ion-card-content>
   </ion-card>
 </ion-content>

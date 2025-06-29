@@ -1,0 +1,24 @@
+<ion-header>
+  <ion-toolbar color="primary">
+    <ion-title>Detalle publicación</ion-title>
+    <ion-buttons slot="end">
+      <ion-button (click)="cerrarModal()">
+        <ion-icon name="close-outline"></ion-icon>
+      </ion-button>
+    </ion-buttons>
+  </ion-toolbar>
+</ion-header>
+
+<ion-content class="ion-padding">
+  <img [src]="publicacion.imagen" style="width: 100%; border-radius: 8px" />
+  <h2>{{ publicacion.titulo }}</h2>
+  <ion-chip> {{ publicacion.tipo }} | {{ publicacion.categoria }} </ion-chip>
+  <p>{{ publicacion.descripcion }}</p>
+  <p><strong>Intercambio:</strong> {{ publicacion.intercambio }}</p>
+  <p><strong>Usuario:</strong> {{ publicacion.usuario }}</p>
+  <p><strong>Comuna:</strong> {{ publicacion.comuna }}</p>
+
+  <ion-button expand="block" color="primary" (click)="responder()">
+    Responder publicación
+  </ion-button>
+</ion-content>

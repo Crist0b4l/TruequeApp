@@ -2,6 +2,7 @@ import { Component, OnInit } from '@angular/core';
 import { Router } from '@angular/router';
 import { DbserviceService } from 'src/app/services/dbservice.service';
 import { ToastController } from '@ionic/angular';
+import { Camera, CameraResultType, CameraSource } from '@capacitor/camera';
 
 @Component({
   selector: 'app-perfil',
@@ -17,6 +18,8 @@ export class PerfilPage implements OnInit {
 
   nuevoUsuario: string = '';
   nuevaPassword: string = '';
+
+  capturedImage?: string;
 
   constructor(
     private router: Router,
@@ -56,6 +59,10 @@ validacionesPerfil(): boolean {
       this.usuarioDB = await this.dbService.obtenerUsuario(usuarioActivo);
       this.nuevoUsuario = this.usuarioDB.usuario;
       this.nuevaPassword = this.usuarioDB.password;
+    }
+    const fotoGuardada = localStorage.getItem('fotoPerfil');
+    if (fotoGuardada) {
+      this.capturedImage = fotoGuardada; // Carga la imagen guardada
     }
   }
 
@@ -98,4 +105,27 @@ validacionesPerfil(): boolean {
     this.nuevaPassword = this.usuarioDB.password;
   }
 
+
+  async captureImage() {
+    try {
+      const image = await Camera.getPhoto({
+        quality: 90,
+        allowEditing: false,
+        resultType: CameraResultType.DataUrl,
+        source: CameraSource.Prompt, // Permite al usuario elegir entre galería o cámara
+      });
+      this.capturedImage = image.dataUrl; // Almacena la imagen capturada
+
+      if (this.capturedImage) {
+        localStorage.setItem('fotoPerfil', this.capturedImage);
+      }
+    } catch (error: any) {
+      if (error && error.message && error.message.includes('cancel')) {
+        console.log('Captura de imagen cancelada por el usuario');
+        return;
+    }
+      console.error('Error al capturar imagen:', error);
+      this.presentToast('Error al capturar imagen: ' + error.message);
+    }
+  }
 }

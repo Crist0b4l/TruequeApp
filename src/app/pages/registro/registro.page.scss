@@ -1,3 +1,11 @@
 .background-style {
   --background: linear-gradient(to bottom, #5c9ded, #a8caff);
 }
+
+ion-button[fill="clear"] {
+  --padding-start: 4px;
+  --padding-end: 4px;
+  font-size: 13px;
+  color: var(--ion-color-primary);
+}
+

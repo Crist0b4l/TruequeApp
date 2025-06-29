@@ -14,8 +14,19 @@
   <ion-card class="perfil-card" color="warning">
     <ion-card-content>
       <ion-avatar class="avatar">
-        <img src="../../../assets/img/usuario.png" alt="Foto de perfil" />
+        <img
+          [src]="capturedImage || '../../../assets/img/usuario.png'"
+          alt="Foto de perfil"
+        />
       </ion-avatar>
+      <ion-button
+        expand="block"
+        fill="outline"
+        color="primary"
+        (click)="captureImage()"
+      >
+        Cambiar foto de perfil
+      </ion-button>
 
       <ion-card-title>{{ usuarioDB.usuario }}</ion-card-title>
       <ion-card-subtitle>

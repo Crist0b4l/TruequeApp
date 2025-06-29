@@ -151,7 +151,9 @@ export class RegistroPage implements OnInit {
 
   async obtenerUbicacion() {
   try {
-    const position = await Geolocation.getCurrentPosition();
+    const position = await Geolocation.getCurrentPosition({
+      enableHighAccuracy: true
+    });
     const lat = position.coords.latitude;
     const lon = position.coords.longitude;
 

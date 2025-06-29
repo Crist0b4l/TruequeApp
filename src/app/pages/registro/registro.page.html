@@ -111,15 +111,20 @@
         name="comuna"
         required
       ></ion-input>
+      <ion-button
+        fill="clear"
+        slot="end"
+        size="small"
+        (click)="obtenerUbicacion()"
+      >
+        <ion-icon slot="start" name="locate-outline"></ion-icon>
+        Ubicación
+      </ion-button>
     </ion-item>
 
     <ion-note color="danger" *ngIf="intentoEnvio && !usuario.comuna">
       Este campo es obligatorio
     </ion-note>
-
-    <ion-button fill="outline" size="small" (click)="obtenerUbicacion()">
-      Usar mi ubicación
-    </ion-button>
 
     <!-- Email -->
     <ion-item>

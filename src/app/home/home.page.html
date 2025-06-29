@@ -8,7 +8,11 @@
 </ion-header>
 
 <ion-content [fullscreen]="true" class="ion-padding">
-  <ion-card *ngFor="let pub of publicaciones" class="publicacion-card">
+  <ion-card
+    *ngFor="let pub of publicaciones"
+    class="publicacion-card"
+    (click)="verPublicacion(pub)"
+  >
     <img [src]="pub.imagen" alt="Imagen del producto" />
 
     <ion-card-header>
@@ -37,8 +41,8 @@
 
   <!-- Botón más -->
   <ion-fab vertical="bottom" horizontal="end" slot="fixed">
-    <ion-fab-button (click)="irACrearPublicacion()" color="primary">
-      <ion-icon name="add"></ion-icon>
+    <ion-fab-button (click)="usarMiUbicacion()" color="primary">
+      <ion-icon name="locate-outline"></ion-icon>
     </ion-fab-button>
   </ion-fab>
 </ion-content>
