@@ -9,16 +9,43 @@
   </ion-toolbar>
 </ion-header>
 
-<ion-content class="ion-padding">
-  <img [src]="publicacion.imagen" style="width: 100%; border-radius: 8px" />
-  <h2>{{ publicacion.titulo }}</h2>
-  <ion-chip> {{ publicacion.tipo }} | {{ publicacion.categoria }} </ion-chip>
-  <p>{{ publicacion.descripcion }}</p>
-  <p><strong>Intercambio:</strong> {{ publicacion.intercambio }}</p>
-  <p><strong>Usuario:</strong> {{ publicacion.usuario }}</p>
-  <p><strong>Comuna:</strong> {{ publicacion.comuna }}</p>
+<ion-content class="ion-padding modal-publicacion-content">
+  <ion-card class="detalle-publicacion-card">
+    <img
+      [src]="publicacion.imagen"
+      [alt]="publicacion.titulo + ' en TruequeApp'"
+    />
 
-  <ion-button expand="block" color="primary" (click)="responder()">
-    Responder publicación
-  </ion-button>
+    <ion-card-header>
+      <ion-chip color="primary">
+        {{ publicacion.tipo }} | {{ publicacion.categoria }}
+      </ion-chip>
+      <ion-card-title style="text-align: center"
+        >{{ publicacion.titulo }}</ion-card-title
+      >
+    </ion-card-header>
+
+    <ion-card-content>
+      <p>
+        <ion-icon name="document-text-outline"></ion-icon>
+        <strong>Descripción:</strong> {{ publicacion.descripcion }}
+      </p>
+      <p>
+        <ion-icon name="sync-outline"></ion-icon>
+        <strong>Intercambio:</strong> {{ publicacion.intercambio }}
+      </p>
+      <p>
+        <ion-icon name="person-circle-outline"></ion-icon>
+        <strong>Usuario:</strong> {{ publicacion.usuario }}
+      </p>
+      <p>
+        <ion-icon name="location-outline"></ion-icon>
+        <strong>Comuna:</strong> {{ publicacion.comuna }}
+      </p>
+
+      <ion-button expand="block" color="warning" (click)="responder()">
+        Responder publicación
+      </ion-button>
+    </ion-card-content>
+  </ion-card>
 </ion-content>

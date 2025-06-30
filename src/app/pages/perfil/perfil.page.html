@@ -10,7 +10,7 @@
   </ion-toolbar>
 </ion-header>
 
-<ion-content class="ion-padding" *ngIf="usuarioDB">
+<ion-content class="ion-padding perfil-content" *ngIf="usuarioDB">
   <ion-card class="perfil-card" color="warning">
     <ion-card-content>
       <ion-avatar class="avatar">
@@ -23,12 +23,16 @@
         expand="block"
         fill="outline"
         color="primary"
+        class="cambiar-foto-btn"
         (click)="captureImage()"
       >
+        <ion-icon slot="start" name="camera-outline"></ion-icon>
         Cambiar foto de perfil
       </ion-button>
 
-      <ion-card-title>{{ usuarioDB.usuario }}</ion-card-title>
+      <ion-card-title class="perfil-titulo"
+        >{{ usuarioDB.usuario }}</ion-card-title
+      >
       <ion-card-subtitle>
         <ion-icon name="location-outline"></ion-icon>
         {{ usuarioDB.comuna }}
@@ -68,8 +72,10 @@
 
       <ng-template #soloVista>
         <ion-button expand="block" color="primary" (click)="modoEdicion = true">
+          <ion-icon slot="start" name="pencil-outline"></ion-icon>
           Editar perfil
         </ion-button>
+
         <ion-button expand="block" color="danger" (click)="cerrarSesion()">
           Cerrar sesión
         </ion-button>

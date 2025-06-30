@@ -3,30 +3,58 @@
     <ion-buttons slot="start">
       <ion-menu-button class="boton-menu-blanco"></ion-menu-button>
     </ion-buttons>
-    <ion-title style="color: white">Mis Publicaciones</ion-title>
+    <ion-title>Mis Publicaciones</ion-title>
   </ion-toolbar>
 </ion-header>
 
-<ion-content [fullscreen]="true" class="ion-padding">
-  <ion-card *ngFor="let pub of publicacionesPropias">
-    <img [src]="pub.imagen" alt="Imagen de {{ pub.titulo }}" />
+<ion-content [fullscreen]="true" class="ion-padding mis-publicaciones-content">
+  <!-- BLOQUE QUE MUESTRA MENSAJE SI NO HAY PUBLICACIONES -->
+  <ion-card *ngIf="publicacionesPropias.length === 0" class="card-vacia">
+    <ion-card-content>
+      <ion-icon
+        name="sad-outline"
+        style="font-size: 48px; color: var(--ion-color-primary)"
+      ></ion-icon>
+      <h2>No tienes publicaciones</h2>
+      <p>¡Crea tu primera publicación para empezar a truequear!</p>
+      <ion-button expand="block" color="primary" (click)="abrirModal()">
+        <ion-icon slot="start" name="add-outline"></ion-icon>
+        Nueva Publicación
+      </ion-button>
+    </ion-card-content>
+  </ion-card>
+
+  <!-- TUS PUBLICACIONES -->
+  <ion-card *ngFor="let pub of publicacionesPropias" class="publicacion-card">
+    <img [src]="pub.imagen" [alt]="'Imagen de ' + pub.titulo" />
 
     <ion-card-header>
-      <ion-card-subtitle
-        >{{ pub.tipo }} / {{ pub.categoria }}</ion-card-subtitle
+      <ion-chip color="primary">
+        {{ pub.tipo }} / {{ pub.categoria }}
+      </ion-chip>
+      <ion-card-title style="text-align: center"
+        >{{ pub.titulo }}</ion-card-title
       >
-      <ion-card-title>{{ pub.titulo }}</ion-card-title>
     </ion-card-header>
 
     <ion-card-content>
-      <p><strong>Descripción:</strong> {{ pub.descripcion }}</p>
-      <p><strong>Intercambio:</strong> {{ pub.intercambio }}</p>
-      <p><strong>Ubicación:</strong> {{ pub.comuna }}</p>
+      <p>
+        <ion-icon name="document-text-outline"></ion-icon>
+        <strong>Descripción:</strong> {{ pub.descripcion }}
+      </p>
+      <p>
+        <ion-icon name="sync-outline"></ion-icon>
+        <strong>Intercambio:</strong> {{ pub.intercambio }}
+      </p>
+      <p>
+        <ion-icon name="location-outline"></ion-icon>
+        <strong>Ubicación:</strong> {{ pub.comuna }}
+      </p>
 
       <ion-button
-        expand="full"
+        expand="block"
         color="danger"
-        sixe="small"
+        fill="solid"
         (click)="eliminarPublicacion(pub)"
       >
         <ion-icon name="trash-outline" slot="start"></ion-icon>
@@ -36,7 +64,11 @@
   </ion-card>
 
   <ion-fab vertical="bottom" horizontal="end" slot="fixed">
-    <ion-fab-button color="primary" (click)="abrirModal()">
+    <ion-fab-button
+      color="primary"
+      aria-label="Nueva publicación"
+      (click)="abrirModal()"
+    >
       <ion-icon name="add-outline"></ion-icon>
     </ion-fab-button>
   </ion-fab>

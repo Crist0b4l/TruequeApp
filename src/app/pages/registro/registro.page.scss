@@ -9,3 +9,63 @@ ion-button[fill="clear"] {
   color: var(--ion-color-primary);
 }
 
+.background-style {
+  --background: linear-gradient(to bottom, #5c9ded, #a8caff);
+}
+
+.registro-card {
+  background-color: #ffffff;
+  border-radius: 16px;
+  color: #333;
+  box-shadow: 0 4px 16px rgba(0, 0, 0, 0.2);
+  margin-top: 20px;
+}
+
+.registro-card ion-card-title {
+  color: #333;
+  font-weight: bold;
+  text-align: center;
+  font-size: 1.4rem;
+}
+
+.registro-input {
+  --background: #fff8dc;
+  border-radius: 8px;
+  margin-bottom: 14px;
+  padding-left: 8px;
+  --highlight-color-focused: var(--ion-color-warning);
+}
+
+.registro-input ion-label {
+  color: #333;
+  font-weight: 500;
+}
+
+.registro-input ion-input,
+.registro-input ion-datetime {
+  color: #333;
+}
+
+ion-note {
+  margin-bottom: 12px;
+}
+
+ion-button[color="warning"] {
+  color: #333;
+  font-weight: bold;
+}
+
+ion-button[color="secondary"] {
+  background: var(--ion-color-primary);
+  color: white;
+  font-weight: bold;
+}
+ion-button[fill="outline"] {
+  --border-radius: 8px;
+  font-weight: 500;
+  height: 32px;
+  font-size: 12px;
+  --padding-start: 8px;
+  --padding-end: 8px;
+}
+

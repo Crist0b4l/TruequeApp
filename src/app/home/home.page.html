@@ -3,7 +3,7 @@
     <ion-buttons slot="start">
       <ion-menu-button class="boton-menu-blanco"></ion-menu-button>
     </ion-buttons>
-    <ion-title style="color: white">TruequeApp</ion-title>
+    <ion-title>TruequeApp</ion-title>
   </ion-toolbar>
 </ion-header>
 
@@ -13,35 +13,52 @@
     class="publicacion-card"
     (click)="verPublicacion(pub)"
   >
-    <img [src]="pub.imagen" alt="Imagen del producto" />
+    <img [src]="pub.imagen" [alt]="pub.titulo + ' en TruequeApp'" />
 
     <ion-card-header>
-      <ion-chip color="light" style="color: #000; font-weight: bold">
+      <ion-chip color="primary">
         {{ pub.tipo }} | {{ pub.categoria }}
       </ion-chip>
-      <ion-card-title>{{ pub.titulo }}</ion-card-title>
+      <ion-card-title style="text-align: center"
+        >{{ pub.titulo }}</ion-card-title
+      >
     </ion-card-header>
 
     <ion-card-content>
-      <p><strong>Descripción:</strong> {{ pub.descripcion }}</p>
       <p>
+        <ion-icon name="document-text-outline"></ion-icon>
+        <strong>Descripción:</strong> {{ pub.descripcion }}
+      </p>
+      <p>
+        <ion-icon name="sync-outline"></ion-icon>
         <strong>{{ pub.tipo === 'Ofrece' ? 'Busca' : 'Ofrece' }}:</strong>
         {{ pub.intercambio }}
       </p>
-      <p>{{ pub.usuario }} | {{ pub.comuna }}</p>
+      <p>
+        <ion-icon name="location-outline"></ion-icon>
+        {{ pub.usuario }} | {{ pub.comuna }}
+      </p>
     </ion-card-content>
   </ion-card>
 
   <!-- Botón lupa -->
   <ion-fab vertical="bottom" horizontal="start" slot="fixed">
-    <ion-fab-button color="light" (click)="abrirBusqueda()">
+    <ion-fab-button
+      color="light"
+      aria-label="Buscar publicaciones"
+      (click)="abrirBusqueda()"
+    >
       <ion-icon name="search-outline"></ion-icon>
     </ion-fab-button>
   </ion-fab>
 
-  <!-- Botón más -->
+  <!-- Botón localizar -->
   <ion-fab vertical="bottom" horizontal="end" slot="fixed">
-    <ion-fab-button (click)="usarMiUbicacion()" color="primary">
+    <ion-fab-button
+      color="primary"
+      aria-label="Usar mi ubicación"
+      (click)="usarMiUbicacion()"
+    >
       <ion-icon name="locate-outline"></ion-icon>
     </ion-fab-button>
   </ion-fab>

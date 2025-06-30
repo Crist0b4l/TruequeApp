@@ -13,43 +13,19 @@ export class PublicacionesPage {
 
   publicacionesPropias: any[] = [];
 
-  constructor(private modalCtrl: ModalController, private alertCtrl: AlertController) {}
+  constructor(
+    private modalCtrl: ModalController,
+    private alertCtrl: AlertController
+  ) {}
 
   ngOnInit() {
+    // cargar publicaciones desde localstorage
     const publicacionesGuardadas = localStorage.getItem('publicacionesPropias');
     if (publicacionesGuardadas) {
       this.publicacionesPropias = JSON.parse(publicacionesGuardadas);
-      console.log('Publicaciones propias cargadas:', this.publicacionesPropias);
+      console.log('publicaciones propias cargadas:', this.publicacionesPropias);
     } else {
-      this.publicacionesPropias = [
-        {
-          tipo: 'Ofrece',
-          categoria: 'Hogar',
-          titulo: 'Silla de escritorio',
-          descripcion: 'Silla negra, con respaldo alto. Poco uso.',
-          intercambio: 'Lámpara o audífonos',
-          usuario: 'Tú',
-          comuna: 'Independencia',
-          imagen: 'assets/img/silla.jpg'
-        },
-        {
-          tipo: 'Busca',
-          categoria: 'Tecnología',
-          titulo: 'Cargador USB-C',
-          descripcion: 'Necesito cargador rápido para celular Samsung.',
-          intercambio: 'Audífonos bluetooth usados',
-          usuario: 'Tú',
-          comuna: 'Providencia',
-          imagen: 'assets/img/cargador.jpeg'
-        }
-      ];
-
-      // guardar los ejemplos en localStorage
-      localStorage.setItem(
-        'publicacionesPropias',
-        JSON.stringify(this.publicacionesPropias)
-      );
-      console.log('Ejemplos iniciales guardados en localStorage.');
+      this.publicacionesPropias = [];
     }
   }
 
@@ -64,19 +40,19 @@ export class PublicacionesPage {
     if (role === 'confirm' && data) {
       this.publicacionesPropias.unshift(data);
 
+      // guardar publicaciones en localstorage
       localStorage.setItem(
         'publicacionesPropias',
-        JSON.stringify(this.publicacionesPropias) // guarda publicaciones en localStorage
+        JSON.stringify(this.publicacionesPropias)
       );
-      console.log('Publicación guardada en localStorage:', data);
+      console.log('publicacion guardada en localstorage:', data);
     }
   }
 
-
   async eliminarPublicacion(pub: any) {
     const alert = await this.alertCtrl.create({
-      header: 'Confirmar eliminación',
-      message: '¿Estás seguro de que quieres eliminar esta publicación?',
+      header: 'Confirmar eliminacion',
+      message: '¿estas seguro de que quieres eliminar esta publicacion?',
       buttons: [
         {
           text: 'Cancelar',
@@ -90,12 +66,13 @@ export class PublicacionesPage {
               p => p !== pub
             );
 
+            // actualizar localstorage despues de eliminar
             localStorage.setItem(
               'publicacionesPropias',
               JSON.stringify(this.publicacionesPropias)
             );
 
-            console.log('Publicación eliminada:', pub);
+            console.log('publicacion eliminada:', pub);
           }
         }
       ]
@@ -104,5 +81,4 @@ export class PublicacionesPage {
     await alert.present();
   }
 
-  
 }

@@ -1,33 +1,91 @@
+.mis-publicaciones-content {
+  --background: linear-gradient(to bottom, #5c9ded, #a1c7f6);
+}
 
-ion-card {
+.publicacion-card {
+  border-radius: 16px;
+  overflow: hidden;
+  margin-bottom: 24px;
   background-color: var(--ion-color-warning);
-  color: #333;
-  border-radius: 12px;
-  box-shadow: 0 2px 8px rgba(0, 0, 0, 0.1);
-  margin-bottom: 16px;
-}
+  box-shadow: 0 4px 12px rgba(0, 0, 0, 0.15);
+  transition: transform 0.2s;
 
-ion-card-title,
-ion-card-subtitle,
-ion-card-content p {
-  color: #333 !important;
-}
+  &:hover {
+    transform: translateY(-4px);
+    box-shadow: 0 8px 16px rgba(0, 0, 0, 0.2);
+  }
 
-ion-card img {
-  border-top-left-radius: 12px;
-  border-top-right-radius: 12px;
-  object-fit: cover;
-  max-height: 180px;
+  img {
+    width: 100%;
+    height: 180px;
+    object-fit: cover;
+    border-top-left-radius: 16px;
+    border-top-right-radius: 16px;
+    display: block;
+  }
+
+  ion-card-header {
+    padding: 12px;
+
+    ion-chip {
+      margin-bottom: 8px;
+      font-weight: bold;
+      color: #ffffff;
+      background: var(--ion-color-primary);
+      border-radius: 16px;
+      font-size: 0.85rem;
+    }
+
+    ion-card-title {
+      font-size: 1.2rem;
+      font-weight: 600;
+      color: #333333;
+      margin-bottom: 4px;
+    }
+  }
+
+  ion-card-content {
+    padding: 12px;
+
+    p {
+      font-size: 0.95rem;
+      margin: 8px 0;
+      color: #333333;
+    }
+
+    ion-button {
+      margin-top: 16px;
+      font-weight: bold;
+      --border-radius: 12px;
+    }
+  }
 }
 
 .boton-menu-blanco::part(icon) {
   color: white !important;
 }
-ion-card img {
-  width: 100%;
-  height: 180px;
-  object-fit: cover;
-  border-top-left-radius: 12px;
-  border-top-right-radius: 12px;
-  display: block;
+
+.card-vacia {
+  text-align: center;
+  background: #ffffff;
+  border-radius: 16px;
+  padding: 24px;
+  margin-top: 40px;
+  box-shadow: 0 4px 12px rgba(0, 0, 0, 0.1);
+
+  ion-icon {
+    margin-bottom: 16px;
+  }
+
+  h2 {
+    font-size: 1.4rem;
+    color: var(--ion-color-primary);
+    margin-bottom: 8px;
+  }
+
+  p {
+    color: #333333;
+    font-size: 1rem;
+    margin-bottom: 16px;
+  }
 }

@@ -1,19 +1,24 @@
+.perfil-content {
+  --background: linear-gradient(to bottom, #5c9ded, #a8caff);
+}
+
 .perfil-card {
   text-align: center;
   border-radius: 16px;
   background-color: var(--ion-color-warning);
   color: #333;
-  padding-top: 20px;
-  padding-bottom: 20px;
-  max-width: 400px;
-  margin: 0 auto;
+  padding: 20px;
+  max-width: 360px;
+  margin: 20px auto;
+  box-shadow: 0 4px 12px rgba(0, 0, 0, 0.2);
 }
 
-ion-card-title {
-  font-size: 1.4rem;
-  font-weight: 600;
-  margin-top: 10px;
+.perfil-titulo {
+  font-size: 1.6rem;
+  font-weight: bold;
   color: #000;
+  margin-top: 12px;
+  margin-bottom: 8px;
 }
 
 .avatar {
@@ -32,11 +37,6 @@ ion-card-title {
   border-radius: 50%;
 }
 
-
-ion-input {
-  --padding-start: 10px;
-}
-
 ion-card-subtitle {
   color: #333;
   display: flex;
@@ -44,4 +44,77 @@ ion-card-subtitle {
   align-items: center;
   gap: 4px;
   font-size: 0.95rem;
+  margin-bottom: 16px;
+}
+
+ion-input {
+  --background: #fff8dc;
+  border-radius: 8px;
+  margin-bottom: 12px;
+  --highlight-color-focused: var(--ion-color-warning);
+}
+
+ion-label {
+  color: #333;
+  font-weight: 500;
+}
+
+ion-button {
+  margin-top: 10px;
+  font-weight: bold;
+}
+
+/* ✅ SOLO APLICA FONDO A BOTONES SÓLIDOS, NO OUTLINE */
+ion-button[color="primary"]:not([fill="outline"]) {
+  background: var(--ion-color-primary);
+  color: #fff;
+}
+
+ion-button[color="danger"] {
+  background: var(--ion-color-danger);
+  color: #fff;
+}
+
+ion-button[fill="outline"] {
+  --border-radius: 8px;
+  font-weight: 500;
+  height: 40px;
+  font-size: 14px;
+  --padding-start: 8px;
+  --padding-end: 8px;
+  --background: transparent;
+  --border-color: var(--ion-color-primary);
+  --color: var(--ion-color-primary);
+  border: 1px solid var(--ion-color-primary);
+}
+
+ion-button[fill="outline"]:hover {
+  --background: var(--ion-color-primary);
+  --color: #fff;
+}
+
+ion-button[fill="outline"]:hover ion-icon {
+  color: #fff;
+}
+
+.cambiar-foto-btn {
+  margin-top: 12px;
+  font-weight: 500;
+  --border-radius: 8px;
+  font-size: 14px;
+  --padding-start: 8px;
+  --padding-end: 8px;
+  --background: transparent;
+  --color: var(--ion-color-primary);
+  --border-color: var(--ion-color-primary);
+  border: 1px solid var(--ion-color-primary);
+}
+
+.cambiar-foto-btn:hover {
+  --background: var(--ion-color-primary);
+  --color: #fff;
+}
+
+.cambiar-foto-btn:hover ion-icon {
+  color: #fff;
 }

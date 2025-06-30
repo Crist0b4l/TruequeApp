@@ -1,39 +1,58 @@
 ion-content {
-  --background: #ffffff;
+  --background: transparent;
   color: #000;
 }
 
 .publicacion-card {
   border-radius: 16px;
   overflow: hidden;
-  margin-bottom: 24px; /* más espacio entre tarjetas */
-  background-color: var(--ion-color-warning); // fondo mostaza
-  box-shadow: 0 2px 8px rgba(0, 0, 0, 0.1); // sombra suave
+  margin-bottom: 24px;
+  background-color: var(--ion-color-warning);
+  box-shadow: 0 4px 12px rgba(0, 0, 0, 0.15);
+  transition: transform 0.2s;
+
+  &:hover {
+    transform: translateY(-4px);
+    box-shadow: 0 8px 16px rgba(0, 0, 0, 0.2);
+  }
+
+  ion-card-header {
+    padding: 12px;
+  }
 
   ion-chip {
     margin-bottom: 8px;
     font-weight: bold;
-    color: white;
+    color: #ffffff;
+    background: var(--ion-color-primary);
+    border-radius: 16px;
+    font-size: 0.85rem;
   }
 
   ion-card-title {
     font-size: 1.2rem;
     font-weight: 600;
     color: #333;
+    margin-bottom: 4px;
   }
 
   img {
     width: 100%;
-    height: 150px;
+    height: 180px;
     object-fit: cover;
     border-top-left-radius: 16px;
     border-top-right-radius: 16px;
+    display: block;
   }
 
-  ion-card-content p {
-    font-size: 0.95rem;
-    margin: 6px 0;
-    color: #333;
+  ion-card-content {
+    padding: 12px;
+
+    p {
+      font-size: 0.95rem;
+      margin: 6px 0;
+      color: #333;
+    }
   }
 }
 
@@ -41,17 +60,7 @@ ion-content {
   color: white !important;
 }
 
-
 ::ng-deep .alert-wrapper {
   border-radius: 12px;
   background-color: #ffffff;
-}
-
-ion-card img {
-  width: 100%;
-  height: 180px;
-  object-fit: cover;
-  border-top-left-radius: 12px;
-  border-top-right-radius: 12px;
-  display: block;
 }
