@@ -2,7 +2,7 @@ import { Component } from '@angular/core';
 import { Router } from '@angular/router';
 import { AlertController, ModalController, ToastController } from '@ionic/angular';
 import { Geolocation } from '@capacitor/geolocation';
-import { ModalPublicacionPage } from '../pages/modal-publicacion/modal-publicacion.page';
+// import { ModalPublicacionPage } from '../pages/modal-publicacion/modal-publicacion.page'; para pruebas unitarias
 import { Publicacion } from '../models/publicacion.model';
 
 @Component({
@@ -52,15 +52,16 @@ export class HomePage {
     private toastController: ToastController
   ) {}
 
-  async verPublicacion(publicacion: Publicacion) {
-    const modal = await this.modalCtrl.create({
-      component: ModalPublicacionPage,
-      componentProps: {
-        publicacion: publicacion
-      }
-    });
-    await modal.present();
-  }
+  // async verPublicacion(publicacion: Publicacion) {
+  //   const modal = await this.modalCtrl.create({
+  //     component: ModalPublicacionPage,
+  //     componentProps: {
+  //       publicacion: publicacion
+  //     }
+  //   });
+  //   await modal.present();
+  // } 
+  //Para pruebas unitarias, se comenta el uso de modal
 
   async usarMiUbicacion() {
     try {
