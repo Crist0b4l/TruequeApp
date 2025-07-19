@@ -45,12 +45,17 @@ export class HomePage {
     }
   ];
 
+  filtradas: Publicacion[] = [];
+  terminoBusqueda: string = '';
+
   constructor(
     private router: Router,
     private alertCtrl: AlertController,
     private modalCtrl: ModalController,
     private toastController: ToastController
-  ) {}
+  ) {
+    this.filtradas = [...this.publicaciones]; // Mostrar todo al inicio
+  }
 
   async verPublicacion(publicacion: Publicacion) {
     const modal = await this.modalCtrl.create({
@@ -118,7 +123,7 @@ export class HomePage {
         {
           name: 'termino',
           type: 'text',
-          placeholder: 'Ej: bicicleta, libros, tecnología...'
+          placeholder: 'Ej: bicicleta, libro, Ps5...\n Deja vacío para mostrar todo',
         }
       ],
       buttons: [
@@ -129,8 +134,20 @@ export class HomePage {
         {
           text: 'Buscar',
           handler: (data) => {
-            console.log('Término buscado:', data.termino);
-            // En el futuro aquí se podrá aplicar la lógica para filtrar
+            const termino = data.termino?.trim().toLowerCase();
+
+            if (!termino) {
+              this.filtradas = [...this.publicaciones]; // Mostrar todo
+              return;
+            }
+
+            this.filtradas = this.publicaciones.filter(pub =>
+              pub.titulo.toLowerCase().includes(termino)
+            );
+
+            if (this.filtradas.length === 0) {
+              this.presentToast('No se encontraron coincidencias');
+            }
           }
         }
       ]

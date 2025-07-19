@@ -9,7 +9,7 @@
 
 <ion-content [fullscreen]="true" class="ion-padding">
   <ion-card
-    *ngFor="let pub of publicaciones"
+    *ngFor="let pub of filtradas"
     class="publicacion-card"
     (click)="verPublicacion(pub)"
   >
@@ -19,9 +19,9 @@
       <ion-chip color="primary">
         {{ pub.tipo }} | {{ pub.categoria }}
       </ion-chip>
-      <ion-card-title style="text-align: center"
-        >{{ pub.titulo }}</ion-card-title
-      >
+      <ion-card-title style="text-align: center">
+        {{ pub.titulo }}
+      </ion-card-title>
     </ion-card-header>
 
     <ion-card-content>
@@ -40,6 +40,11 @@
       </p>
     </ion-card-content>
   </ion-card>
+
+  <!-- Si no hay resultados -->
+  <p *ngIf="filtradas.length === 0" class="ion-text-center">
+    No se encontraron publicaciones.
+  </p>
 
   <!-- Botón lupa -->
   <ion-fab vertical="bottom" horizontal="start" slot="fixed">
